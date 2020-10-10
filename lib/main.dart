@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         // "hot reload" (press "r" in the console where you ran "flutter run",
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.8
+        // is not restarted.9
 
         primarySwatch: Colors.blue,
         // This makes the visual density adapt to the platform that you run
