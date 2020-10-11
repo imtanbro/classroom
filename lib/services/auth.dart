@@ -37,7 +37,7 @@ class AuthService{
       FirebaseUser firebaseUser = authResult.user;
       return _userFormFirebaseUser(firebaseUser);
     }catch(e){
-      print(e.toString())
+      print(e.toString());
     }
   }
   Future signUpWithEmailAndPassword(String email, String password) async{

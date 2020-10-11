@@ -1,6 +1,10 @@
+import 'package:classroom/services/auth.dart';
+import 'package:classroom/views/home.dart';
 import 'package:classroom/views/signup.dart';
 import 'package:classroom/widgets/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:email_validator/email_validator.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -10,6 +14,32 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   String email, password;
+  AuthService authService = new AuthService();
+  bool isEmail(String em) {
+    String p = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regExp = new RegExp(p);
+    return regExp.hasMatch(em);
+  }
+  
+  bool isLoading = false;
+  
+  signIn() async {
+    if(_formKey.currentState.validate()){
+      setState(() {
+        isLoading = true;
+      });
+      await authService.signInEmailAndPass(email, password).then((value) {
+        if(value != null){
+          setState(() {
+            isLoading = false;
+          });
+
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
+        }
+      });
+
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +50,11 @@ class _SignInState extends State<SignIn> {
         elevation: 0.0,
         brightness: Brightness.light,
       ),
-      body: Form(
+      body: isLoading ? Container(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      ) : Form(
         key: _formKey,
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
@@ -29,7 +63,7 @@ class _SignInState extends State<SignIn> {
               Spacer(),
               TextFormField(
                 validator: (val) {
-                  return val.isEmpty ? "Enter Email" : null;
+                  return isEmail(val) ? null : "Enter Valid Email Address";
                 },
                 decoration: InputDecoration(
                   hintText: "Email",
@@ -57,6 +91,7 @@ class _SignInState extends State<SignIn> {
               ),
               GestureDetector(
                 onTap: () {
+                  signIn();
                   print("Clicked on Sign IN Linear Gradient");
                 },
                 child: Container(
