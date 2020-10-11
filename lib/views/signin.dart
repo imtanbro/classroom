@@ -7,6 +7,11 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  
+  final _formKey = GlobalKey<FormState>();
+  String email,password;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +20,23 @@ class _SignInState extends State<SignIn> {
         backgroundColor: Colors.white,
         elevation: 0.0,
         brightness: Brightness.light,
+      ),
+      body: Form(
+        child: Container(
+          child: Column(
+            children: [
+              Spacer(),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Email",
+                ),
+                onChanged: (val){
+                  email = val
+                },
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
