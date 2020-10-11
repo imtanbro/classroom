@@ -4,7 +4,7 @@ import 'package:classroom/views/signup.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:email_validator/email_validator.dart';
+
 
 class SignIn extends StatefulWidget {
   @override

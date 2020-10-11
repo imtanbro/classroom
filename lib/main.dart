@@ -1,5 +1,4 @@
 import 'package:classroom/views/signin.dart';
-import 'package:classroom/views/signup.dart';
 import 'package:flutter/material.dart';
 
 void main() {
