@@ -1,3 +1,4 @@
+import 'package:classroom/views/signup.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -93,6 +94,8 @@ class _SignInState extends State<SignIn> {
                 children: [
                   GestureDetector(
                     onTap: () {
+                      Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => SignUp()));
                       print("Clicked on Dont have an Account");
                     },
                     child: Text(
@@ -102,6 +105,8 @@ class _SignInState extends State<SignIn> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => SignUp()));
                       print("Clicked on Sign Up");
                     },
                     child: Text(

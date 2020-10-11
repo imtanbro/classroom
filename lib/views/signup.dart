@@ -107,7 +107,8 @@ class _SignUpState extends State<SignUp> {
                 children: [
                   GestureDetector(
                       onTap: () {
-                        SignIn();
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => SignIn()));
                         print("Clicked on Sign IN Already have account");
                       },
                       child: Text(
@@ -116,7 +117,8 @@ class _SignUpState extends State<SignUp> {
                       )),
                   GestureDetector(
                       onTap: () {
-                        SignIn();
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => SignIn()));
                         print("Clicked on Sign IN");
                       },
                       child: Text(
