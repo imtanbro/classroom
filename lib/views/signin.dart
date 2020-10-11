@@ -37,7 +37,9 @@ class _SignInState extends State<SignIn> {
                   email = val;
                 },
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               TextFormField(
                 validator: (val) {
                   return val.isEmpty ? "Enter Password" : null;
@@ -49,40 +51,70 @@ class _SignInState extends State<SignIn> {
                   password = val;
                 },
               ),
-              SizedBox(height: 30,),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors:[Color.fromRGBO(66, 133, 244, 1),
-                    Color.fromRGBO(219, 68, 55, 1),
-                    Color.fromRGBO(244, 180, 0, 1),
-                    Color.fromRGBO(15, 157, 88, 1),
-                    ],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
+              SizedBox(
+                height: 30,
+              ),
+              GestureDetector(
+                onTap: () {
+                  print("Clicked on Sign IN Linear Gradient");
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromRGBO(66, 133, 244, 1),
+                        Color.fromRGBO(219, 68, 55, 1),
+                        Color.fromRGBO(244, 180, 0, 1),
+                        Color.fromRGBO(15, 157, 88, 1),
+                      ],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                    ),
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                height: 50,
-                alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width - 48,
-                child: Text("Sign In",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
+                  height: 50,
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width - 48,
+                  child: Text(
+                    "Sign In",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Dont have an Account?", style: TextStyle(fontSize: 15),),
-                  Text(" Sign Up", style: TextStyle(fontSize: 15, decoration: TextDecoration.underline),)
+                  GestureDetector(
+                    onTap: () {
+                      print("Clicked on Dont have an Account");
+                    },
+                    child: Text(
+                      "Dont have an Account?",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print("Clicked on Sign Up");
+                    },
+                    child: Text(
+                      " Sign Up",
+                      style: TextStyle(
+                          fontSize: 15, decoration: TextDecoration.underline),
+                    ),
+                  )
                 ],
               ),
-              SizedBox(height: 100,)
+              SizedBox(
+                height: 100,
+              )
             ],
           ),
         ),
