@@ -131,7 +131,7 @@ class _SignInState extends State<SignIn> {
                     onTap: () {
                       Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) => SignUp()));
-                      print("Clicked on Dont have an Account");
+                      print("Clicked on don't have an Account");
                     },
                     child: Text(
                       "Dont have an Account?",
