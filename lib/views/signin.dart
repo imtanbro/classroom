@@ -7,10 +7,8 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  
   final _formKey = GlobalKey<FormState>();
-  String email,password;
-
+  String email, password;
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +25,14 @@ class _SignInState extends State<SignIn> {
             children: [
               Spacer(),
               TextFormField(
+                validator: (val) {
+                  return val.isEmpty ? "Enter Email" : null;
+                },
                 decoration: InputDecoration(
                   hintText: "Email",
                 ),
-                onChanged: (val){
-                  email = val
+                onChanged: (val) {
+                  email = val;
                 },
               )
             ],
