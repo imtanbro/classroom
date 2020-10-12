@@ -8,6 +8,24 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  Stream quizStream;
+  Widget quizList() {
+    return Container(
+      child: StreamBuilder(
+        stream: quizStream,
+        builder: (context, snapshot) {
+          return snapshot.data != null
+              ? Container()
+              : ListView.builder(
+                  itemCount: snapshot.data.doc.lenth,
+                  itemBuilder: (context, index) {
+                    return;
+                  });
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,25 +42,24 @@ class _QuizState extends State<Quiz> {
               onTap: () {
                 print("User Profile");
               },
-              child: Icon(
-                Icons.person
-              ),
+              child: Icon(Icons.person),
             ),
           )
         ],
       ),
       drawer: Drawer(),
       body: Container(
-        child: Column(children: [
-
-        ],),
+        child: Column(
+          children: [],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>CreateQuiz())); 
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CreateQuiz()));
         },
-        ),
+      ),
     );
   }
 }
