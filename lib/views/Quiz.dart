@@ -14,7 +14,7 @@ class _QuizState extends State<Quiz> {
       child: StreamBuilder(
         stream: quizStream,
         builder: (context, snapshot) {
-          return snapshot.data != null
+          return snapshot.data != nul
               ? Container()
               : ListView.builder(
                   itemCount: snapshot.data.doc.lenth,
