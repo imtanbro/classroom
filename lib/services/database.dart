@@ -23,4 +23,9 @@ class DatabaseService {
       print(e.toString());
     });
   }
+
+
+  getQuizData() async{
+    return await FirebaseFirestore.instance.collection("Quiz").
+  }
 }
