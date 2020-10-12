@@ -1,3 +1,4 @@
+import 'package:classroom/helper/constant.dart';
 import 'package:classroom/services/auth.dart';
 import 'package:classroom/views/signin.dart';
 import 'package:classroom/widgets/widgets.dart';
@@ -25,6 +26,7 @@ class _SignUpState extends State<SignUp> {
           setState(() {
             _isloading = false;
           });
+          HelperFunction.saveUserLoggedInDetails(isloggedin: true);
           Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => Home())
           );

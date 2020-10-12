@@ -1,7 +1,6 @@
 import 'package:classroom/services/database.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:random_string/random_string.dart';
 
 class AddQuestion extends StatefulWidget {
   final String quizId;
@@ -22,19 +21,19 @@ class _AddQuestionState extends State<AddQuestion> {
         _isLoading = true;
       });
 
-      quizId = randomAlphaNumeric(16);
       Map<String, String> quizMap = {
-        "quizId": quizId,
-        "quizImageURL": quizImageUrl,
-        "quizTitle": quizTitle,
-        "quizDescription": quizDescription,
+        "question": question,
+        "option1": option1,
+        "option2": option2,
+        "option3": option3,
+        "option4": option4,
       };
 
-      databaseService.addQuestionData(quizMap, quizId).then((value) {
+      databaseService.addQuestionData(quizMap, widget.quizId).then((value) {
         setState(() {
           _isLoading = false;
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => AddQuestion()));
+          // Navigator.pushReplacement(
+          //     context, MaterialPageRoute(builder: (context) => AddQuestion(quizId)));
         });
       });
     }
@@ -76,7 +75,8 @@ class _AddQuestionState extends State<AddQuestion> {
                   child: Column(
                     children: [
                       TextFormField(
-                        validator: (val) => val.isEmpty ? "Enter Question" : null,
+                        validator: (val) =>
+                            val.isEmpty ? "Enter Question" : null,
                         cursorColor: Colors.blue,
                         style: TextStyle(
                           color: Color.fromRGBO(244, 180, 0, 1),
@@ -164,7 +164,9 @@ class _AddQuestionState extends State<AddQuestion> {
                           option2 = val;
                         },
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                       TextFormField(
                         validator: (val) =>
                             val.isEmpty ? "Enter Option 3" : null,
@@ -226,33 +228,26 @@ class _AddQuestionState extends State<AddQuestion> {
                         height: 10,
                       ),
                       Spacer(),
-                      
-                      Row(
-                        children: [
-                         GestureDetector(
+                      Row(children: [
+                        GestureDetector(
                           onTap: () {
-                            // hostQuiz();
+                            uploadQuestion();
                           },
-                          child: customButton(
-                            context, 
-                            "Add Question", 
-                            MediaQuery.of(context).size.width/2 - 30
-                            ),
+                          child: customButton(context, "Add Question",
+                              MediaQuery.of(context).size.width / 2 - 30),
                         ),
-                        SizedBox(width: 35,),
-
+                        SizedBox(
+                          width: 35,
+                        ),
                         GestureDetector(
                           onTap: () {
                             // hostQuiz();
+                            Navigator.pop(context);
                           },
-                          child: customButton(context, 
-                          "Submit",
-                          MediaQuery.of(context).size.width/2 - 30
-                          ),
+                          child: customButton(context, "Submit",
+                              MediaQuery.of(context).size.width / 2 - 30),
                         ),
-
-                        ]),
-                      
+                      ]),
                       SizedBox(
                         height: 25,
                       )
