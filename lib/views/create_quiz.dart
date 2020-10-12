@@ -35,7 +35,7 @@ class _CreateQuizState extends State<CreateQuiz> {
         child: Container(
           color: Colors.black,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(5.0),
             child: Column(
               children: [
                 TextFormField(
@@ -50,7 +50,7 @@ class _CreateQuizState extends State<CreateQuiz> {
       decoration: InputDecoration(
         labelText: "Quiz Image URL",
         labelStyle: TextStyle(
-            fontSize: 25,
+            fontSize: 22,
             color: Colors.blue,
         ),
         // fillColor: Colors.white,
@@ -64,10 +64,73 @@ class _CreateQuizState extends State<CreateQuiz> {
         quizImageUrl = val;
       },
     ),
-                ),
                 SizedBox(
                   height: 10,
                 ),
+
+                TextFormField(
+      validator: (val) => val.isEmpty ? "Enter Quiz Title" : null,
+      cursorColor: Colors.blue,
+      style: TextStyle(
+        color: Color.fromRGBO(244, 180, 0, 1),
+        decorationColor: Color.fromRGBO(66, 133, 244, 1),
+        fontSize: 20,
+        // backgroundColor: Colors.blue,
+      ),
+      decoration: InputDecoration(
+        labelText: "Quiz Title",
+        labelStyle: TextStyle(
+            fontSize: 22,
+            color: Colors.blue,
+        ),
+        // fillColor: Colors.white,
+        // filled: true,
+        enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.blueGrey, width: 2.0),
+            borderRadius: BorderRadius.circular(25.0),
+        ),
+      ),
+      onChanged: (val) {
+        quizTitle = val;
+      },
+    ),
+                SizedBox(
+                  height: 10,
+                ),
+TextFormField(
+      validator: (val) => val.isEmpty ? "Enter Description" : null,
+      cursorColor: Colors.blue,
+      style: TextStyle(
+        color: Color.fromRGBO(244, 180, 0, 1),
+        decorationColor: Color.fromRGBO(66, 133, 244, 1),
+        fontSize: 20,
+        // backgroundColor: Colors.blue,
+      ),
+      decoration: InputDecoration(
+        labelText: "Quiz Description",
+        labelStyle: TextStyle(
+            fontSize: 22,
+            color: Colors.blue,
+        ),
+        // fillColor: Colors.white,
+        // filled: true,
+        enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.blueGrey, width: 2.0),
+            borderRadius: BorderRadius.circular(25.0),
+        ),
+      ),
+      onChanged: (val) {
+        quizImageUrl = val;
+      },
+    ),
+                Spacer(),
+
+                blueButton(context, "Create Quiz"),
+
+                SizedBox(height: 15,)
+
+
+                
               ],
             ),
           ),
