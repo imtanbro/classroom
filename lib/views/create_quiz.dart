@@ -34,11 +34,11 @@ class _CreateQuizState extends State<CreateQuiz> {
         key: _formKey,
         child: Container(
           color: Colors.black,
-          child: Column(
-            children: [
-              Padding(
-    padding: const EdgeInsets.all(10.0),
-    child: TextFormField(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                TextFormField(
       validator: (val) => val.isEmpty ? "Enter URL" : null,
       cursorColor: Colors.blue,
       style: TextStyle(
@@ -50,21 +50,26 @@ class _CreateQuizState extends State<CreateQuiz> {
       decoration: InputDecoration(
         labelText: "Quiz Image URL",
         labelStyle: TextStyle(
-          fontSize: 25,
-          color: Colors.blue,
+            fontSize: 25,
+            color: Colors.blue,
         ),
         // fillColor: Colors.white,
         // filled: true,
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.blueGrey, width: 2.0),
-          borderRadius: BorderRadius.circular(25.0),
+            borderSide: const BorderSide(color: Colors.blueGrey, width: 2.0),
+            borderRadius: BorderRadius.circular(25.0),
         ),
       ),
       onChanged: (val) {
         quizImageUrl = val;
       },
     ),
-            ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
           ),
         ),
       ),
