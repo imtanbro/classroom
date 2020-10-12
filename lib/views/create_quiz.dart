@@ -1,13 +1,12 @@
-import 'package:classroom/views/create_quiz.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class Quiz extends StatefulWidget {
+class CreateQuiz extends StatefulWidget {
   @override
-  _QuizState createState() => _QuizState();
+  _CreateQuizState createState() => _CreateQuizState();
 }
 
-class _QuizState extends State<Quiz> {
+class _CreateQuizState extends State<CreateQuiz> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,18 +30,9 @@ class _QuizState extends State<Quiz> {
           )
         ],
       ),
-      drawer: Drawer(),
       body: Container(
-        child: Column(children: [
-
-        ],),
+        
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>CreateQuiz())); 
-        },
-        ),
     );
   }
 }
