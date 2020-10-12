@@ -21,17 +21,17 @@ class _SignInState extends State<SignIn> {
     return regExp.hasMatch(em);
   }
   
-  bool isLoading = false;
+  bool _isLoading = false;
   
   signIn() async {
     if(_formKey.currentState.validate()){
       setState(() {
-        isLoading = true;
+        _isLoading = true;
       });
       await authService.signInEmailAndPass(email, password).then((value) {
         if(value != null){
           setState(() {
-            isLoading = false;
+            _isLoading = false;
           });
 
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
@@ -50,7 +50,7 @@ class _SignInState extends State<SignIn> {
         elevation: 0.0,
         brightness: Brightness.light,
       ),
-      body: isLoading ? Container(
+      body: _isLoading ? Container(
         child: Center(
           child: CircularProgressIndicator(),
         ),
@@ -76,8 +76,9 @@ class _SignInState extends State<SignIn> {
                 height: 10,
               ),
               TextFormField(
+                obscureText: true,
                 validator: (val) {
-                  return val.isEmpty ? "Enter Password" : null;
+                  return val.isEmpty && val.length > 6 ? "Enter Password" : null;
                 },
                 decoration: InputDecoration(
                   hintText: "Password",

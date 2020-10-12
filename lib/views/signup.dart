@@ -1,6 +1,8 @@
+import 'package:classroom/services/auth.dart';
 import 'package:classroom/views/signin.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'home.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -10,6 +12,27 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
   String email, password, name;
+  AuthService authService = new AuthService();
+  bool _isloading = false;
+
+  signUp() async {
+    if(_formKey.currentState.validate()) {
+      setState(() {
+        _isloading = true;
+      });
+      await authService.signUpWithEmailAndPassword(email, password).then((value) {
+        if (value != null) {
+          setState(() {
+            _isloading = false;
+          });
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => Home())
+          );
+        }
+      });
+
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +43,11 @@ class _SignUpState extends State<SignUp> {
         elevation: 0.0,
         brightness: Brightness.light,
       ),
-      body: Form(
+      body: _isloading ? Container(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      ) : Form(
         key: _formKey,
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
@@ -43,7 +70,7 @@ class _SignUpState extends State<SignUp> {
               ),
               TextFormField(
                 validator: (val) {
-                  return val.isEmpty ? "Enter Email" : null;
+                  return val.isEmpty ? "Enter valid Email Address" : null;
                 },
                 decoration: InputDecoration(
                   hintText: "Email",
@@ -56,8 +83,9 @@ class _SignUpState extends State<SignUp> {
                 height: 10,
               ),
               TextFormField(
+                obscureText: true,
                 validator: (val) {
-                  return val.isEmpty ? "Enter Password" : null;
+                  return val.length < 6 ? "Enter Correct Password" : null;
                 },
                 decoration: InputDecoration(
                   hintText: "Password",
@@ -71,6 +99,7 @@ class _SignUpState extends State<SignUp> {
               ),
               GestureDetector(
                 onTap: () {
+                  signUp();
                   print("Clicked on Sign UP Gradient Button");
                 },
                 child: Container(
