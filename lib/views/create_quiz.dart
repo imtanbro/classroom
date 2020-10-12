@@ -7,6 +7,8 @@ class CreateQuiz extends StatefulWidget {
 }
 
 class _CreateQuizState extends State<CreateQuiz> {
+  final _formKey = GlobalKey<FormState>();
+  String quizImageUrl, quizTitle, quizDescription;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,15 +25,48 @@ class _CreateQuizState extends State<CreateQuiz> {
               onTap: () {
                 print("User Profile");
               },
-              child: Icon(
-                Icons.person
-              ),
+              child: Icon(Icons.person),
             ),
           )
         ],
       ),
-      body: Container(
-        
+      body: Form(
+        key: _formKey,
+        child: Container(
+          color: Colors.black,
+          child: Column(
+            children: [
+              Padding(
+    padding: const EdgeInsets.all(10.0),
+    child: TextFormField(
+      validator: (val) => val.isEmpty ? "Enter URL" : null,
+      cursorColor: Colors.blue,
+      style: TextStyle(
+        color: Color.fromRGBO(244, 180, 0, 1),
+        decorationColor: Color.fromRGBO(66, 133, 244, 1),
+        fontSize: 20,
+        // backgroundColor: Colors.blue,
+      ),
+      decoration: InputDecoration(
+        labelText: "Quiz Image URL",
+        labelStyle: TextStyle(
+          fontSize: 25,
+          color: Colors.blue,
+        ),
+        // fillColor: Colors.white,
+        // filled: true,
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.blueGrey, width: 2.0),
+          borderRadius: BorderRadius.circular(25.0),
+        ),
+      ),
+      onChanged: (val) {
+        quizImageUrl = val;
+      },
+    ),
+            ],
+          ),
+        ),
       ),
     );
   }
