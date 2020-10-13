@@ -11,7 +11,8 @@ class CreateQuiz extends StatefulWidget {
 
 class _CreateQuizState extends State<CreateQuiz> {
   final _formKey = GlobalKey<FormState>();
-  String quizImageUrl, quizTitle, quizDescription, quizId;
+  String quizTitle, quizDescription, quizId;
+  String quizImageUrl = "";
   DatabaseService databaseService = new DatabaseService();
   bool _isLoading = false;
 
@@ -32,8 +33,8 @@ class _CreateQuizState extends State<CreateQuiz> {
       databaseService.addQuizData(quizMap, quizId).then((value) {
         setState(() {
           _isLoading = false;
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => AddQuestion(quizId)));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => AddQuestion(quizId)));
         });
       });
     }
@@ -75,7 +76,15 @@ class _CreateQuizState extends State<CreateQuiz> {
                   child: Column(
                     children: [
                       TextFormField(
-                        validator: (val) => val.isEmpty ? "Enter URL" : null,
+                        validator: (val) {
+                          if (val.isEmpty) {
+                            val =
+                                "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ";
+                            return val;
+                          } else {
+                            return null;
+                          }
+                        },
                         cursorColor: Colors.blue,
                         style: TextStyle(
                           color: Color.fromRGBO(244, 180, 0, 1),
