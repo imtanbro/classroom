@@ -18,30 +18,30 @@ class _PlayQuizState extends State<PlayQuiz> {
   DatabaseService databaseService = new DatabaseService();
   QuerySnapshot questionsSnapshot;
 
-  QuestionModel getQuestionModelFromDatasnapshot(
-      DocumentSnapshot questionSnapshot) {
-    QuestionModel questionModel = new QuestionModel();
-    questionModel.question = questionsSnapshot.data["question"];
-    // questionModel.question = FirebaseFirestore.instance.collection("Quiz").doc(quizID).collection("QuestionsData")["Question"];
+  // QuestionModel getQuestionModelFromDatasnapshot(
+  //     DocumentSnapshot questionSnapshot) {
+  //   QuestionModel questionModel = new QuestionModel();
+  //   questionModel.question = questionsSnapshot.data["question"];
+  //   // questionModel.question = FirebaseFirestore.instance.collection("Quiz").doc(quizID).collection("QuestionsData")["Question"];
 
-    List<String> options = [
-      questionsSnapshot.data["option1"],
-      questionsSnapshot.data["option2"],
-      questionsSnapshot.data["option3"],
-      questionsSnapshot.data["option4"],
-    ];
+  //   List<String> options = [
+  //     questionsSnapshot.data["option1"],
+  //     questionsSnapshot.data["option2"],
+  //     questionsSnapshot.data["option3"],
+  //     questionsSnapshot.data["option4"],
+  //   ];
 
-    options.shuffle();
+  //   options.shuffle();
 
-    questionModel.option1 = options[0];
-    questionModel.option2 = options[1];
-    questionModel.option3 = options[2];
-    questionModel.option4 = options[3];
-    questionModel.correctOption = questionsSnapshot.data["option1"];
-    questionModel.answer = false;
+  //   questionModel.option1 = options[0];
+  //   questionModel.option2 = options[1];
+  //   questionModel.option3 = options[2];
+  //   questionModel.option4 = options[3];
+  //   questionModel.correctOption = questionsSnapshot.data["option1"];
+  //   questionModel.answer = false;
 
-    return questionModel;
-  }
+  //   return questionModel;
+  // }
 
   @override
   void initState() {
