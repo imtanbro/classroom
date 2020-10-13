@@ -54,7 +54,7 @@ class _PlayQuizState extends State<PlayQuiz> {
       _total = questionsSnapshot.docs.length;
 
       print("$_total this is total");
-      setState(() {});.
+      setState(() {});
     });
     super.initState();
   }
