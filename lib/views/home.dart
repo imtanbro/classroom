@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.black,
       ),
       body: Container(
-        color: Colors.black87,
+        color: Colors.black,
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         child: Column(
           children: [
