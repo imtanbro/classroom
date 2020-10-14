@@ -18,50 +18,31 @@ class _PlayQuizState extends State<PlayQuiz> {
   DatabaseService databaseService = new DatabaseService();
   QuerySnapshot questionsSnapshot;
 
-  // QuestionModel getQuestionModelFromDatasnapshot(String quizId) {
-  //   List option = List();
+  QuestionModel getQuestionModelFromDatasnapshot(
+      DocumentSnapshot questionSnapshot) {
+    QuestionModel questionModel = new QuestionModel();
+    questionModel.question = questionSnapshot["question"];
 
-  //   StreamBuilder(
-  //       stream: FirebaseFirestore.instance
-  //           .collection("Quiz")
-  //           .doc(quizId)
-  //           .collection("QuestionsData")
-  //           .snapshots(),
-  //       builder: (context, snapshot) {
-  //         return snapshot.data == null
-  //             ? Container()
-  //             : ListView.builder(
-  //                 itemCount: snapshot.data.documents.length,
-  //                 itemBuilder: (context, index) {
-  //                   DocumentSnapshot course = snapshot.data.documents[index];
-  //                   return Container();
-  //                 });
-  //       });
+    /// shuffling the options
+    List<String> options = [
+      questionSnapshot["option1"],
+      questionSnapshot["option2"],
+      questionSnapshot["option3"],
+      questionSnapshot["option4"]
+    ];
+    options.shuffle();
 
-  //   // questionModel.question = FirebaseFirestore.instance.collection("Quiz").doc(quizID).collection("QuestionsData")["Question"];
+    questionModel.option1 = options[0];
+    questionModel.option2 = options[1];
+    questionModel.option3 = options[2];
+    questionModel.option4 = options[3];
+    questionModel.correctOption = questionSnapshot["option1"];
+    questionModel.answered = false;
 
-  //   //   List options = [
-  //   //     FirebaseFirestore.instance
-  //   //         .collection("Quiz")
-  //   //         .doc(quizId)
-  //   //         .collection("QuestionsData")["option2"],
-  //   //     questionsSnapshot.data["option2"],
-  //   //     questionsSnapshot.data["option3"],
-  //   //     questionsSnapshot.data["option4"],
-  //   //   ];
+    print(questionModel.correctOption.toLowerCase());
 
-  //   //   options.shuffle();
-
-  //   //   questionModel.option1 = options[0];
-  //   //   questionModel.option2 = options[1];
-  //   //   questionModel.option3 = options[2];
-  //   //   questionModel.option4 = options[3];
-  //   //   questionModel.correctOption = questionsSnapshot.data["option1"];
-  //   //   questionModel.answer = false;
-
-  //   //   return questionModel;
-  //   // }
-  // }
+    return questionModel;
+  }
 
   @override
   void initState() {
@@ -122,14 +103,9 @@ class _PlayQuizState extends State<PlayQuiz> {
                                 DocumentSnapshot course =
                                     snapshot.data.documents[index];
                                 return QuizPlayTile(
-                                  question: course['question'],
-                                  option1: course['option1'],
-                                  option2: course['option2'],
-                                  option3: course['option3'],
-                                  option4: course['option4'],
-                                  correctOption: course['option1'],
-                                  
-                                  
+                                  questionModel: getQuestionModelFromDatasnapshot(
+                                    questionsSnapshot.docs[index]),
+                                index: index,
                                 );
                               });
                     })
@@ -152,22 +128,22 @@ class _PlayQuizState extends State<PlayQuiz> {
 }
 
 class QuizPlayTile extends StatefulWidget {
-  final String question, correctOption;
-  final String option1, option2, option3, option4;
-  final bool answer;
+  // final String question, correctOption;
+  // final String option1, option2, option3, option4;
+  // final bool answer;
   final QuestionModel questionModel;
   final int index;
   
-
   QuizPlayTile(
-      {this.question,
+      {
+      // this.question,
       this.index,
-      this.answer,
-      this.correctOption,
-      this.option1,
-      this.option2,
-      this.option3,
-      this.option4,
+      // this.answer,
+      // this.correctOption,
+      // this.option1,
+      // this.option2,
+      // this.option3,
+      // this.option4,
       this.questionModel});
 
   @override
@@ -176,19 +152,21 @@ class QuizPlayTile extends StatefulWidget {
 
 class _QuizPlayTileState extends State<QuizPlayTile> {
   String optionSelected = "";
+  List option = List();
+     
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
-          Text(widget.question),
+          Text(widget.questionModel.question),
           SizedBox(
             height: 4,
           ),
           OptionTile(
-            correctAnswer: widget.option1,
-            desc: widget.option1,
+            correctAnswer: widget.questionModel.option1,
+            desc: widget.questionModel.option1,
             option: "A",
             optionSelected: optionSelected,
           ),
@@ -196,8 +174,8 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             height: 4,
           ),
           OptionTile(
-            correctAnswer: widget.option1,
-            desc: widget.option2,
+            correctAnswer: widget.questionModel.option1,
+            desc: widget.questionModel.option2,
             option: "B",
             optionSelected: optionSelected,
           ),
@@ -205,8 +183,8 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             height: 4,
           ),
           OptionTile(
-            correctAnswer: widget.option1,
-            desc: widget.option3,
+            correctAnswer: widget.questionModel.option1,
+            desc: widget.questionModel.option3,
             option: "C",
             optionSelected: optionSelected,
           ),
@@ -214,8 +192,8 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             height: 4,
           ),
           OptionTile(
-            correctAnswer: widget.option1,
-            desc: widget.option4,
+            correctAnswer: widget.questionModel.option1,
+            desc: widget.questionModel.option4,
             option: "D",
             optionSelected: optionSelected,
           ),
@@ -224,3 +202,5 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
     );
   }
 }
+
+
