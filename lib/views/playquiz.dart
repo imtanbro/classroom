@@ -100,8 +100,6 @@ class _PlayQuizState extends State<PlayQuiz> {
                               physics: ClampingScrollPhysics(),
                               itemCount: snapshot.data.documents.length,
                               itemBuilder: (context, index) {
-                                DocumentSnapshot course =
-                                    snapshot.data.documents[index];
                                 return QuizPlayTile(
                                   questionModel: getQuestionModelFromDatasnapshot(
                                     questionsSnapshot.docs[index]),
