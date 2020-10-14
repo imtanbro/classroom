@@ -170,28 +170,6 @@ class QuizPlayTile extends StatefulWidget {
       this.option4,
       this.questionModel});
 
-    QuestionModel getQuestionModelFromDatasnapShot() {
-    String a = option1, b = option2, c = option3, d = option4;
-    QuestionModel questionModel = new QuestionModel();
-
-    List<String> options = [
-      a,
-      b,
-      c,
-      d,
-    ];
-    options.shuffle();
-
-    questionModel.option1 = options[0];
-    questionModel.option2 = options[1];
-    questionModel.option3 = options[2];
-    questionModel.option4 = options[3];
-    questionModel.correctOption = option1;
-    questionModel.answer = false;
-
-    return questionModel;
-  }
-
   @override
   _QuizPlayTileState createState() => _QuizPlayTileState();
 }
