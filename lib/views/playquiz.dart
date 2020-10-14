@@ -91,7 +91,7 @@ class _PlayQuizState extends State<PlayQuiz> {
                         .collection("Quiz")
                         .doc(widget.quizID)
                         .collection("QuestionsData")
-                        .snapshots(),
+                        .snapshots(),.
                     builder: (context, snapshot) {
                       return snapshot.data == null
                           ? Container()
