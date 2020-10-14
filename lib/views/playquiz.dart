@@ -18,30 +18,50 @@ class _PlayQuizState extends State<PlayQuiz> {
   DatabaseService databaseService = new DatabaseService();
   QuerySnapshot questionsSnapshot;
 
-  QuestionModel getQuestionModelFromDatasnapshot(
-      DocumentSnapshot questionSnapshot) {
-    QuestionModel questionModel = new QuestionModel();
-    questionModel.question = questionsSnapshot.data["question"];
-    // questionModel.question = FirebaseFirestore.instance.collection("Quiz").doc(quizID).collection("QuestionsData")["Question"];
+  // QuestionModel getQuestionModelFromDatasnapshot(String quizId) {
+  //   List option = List();
 
-    List<String> options = [
-      questionsSnapshot.data["option1"],
-      questionsSnapshot.data["option2"],
-      questionsSnapshot.data["option3"],
-      questionsSnapshot.data["option4"],
-    ];
+  //   StreamBuilder(
+  //       stream: FirebaseFirestore.instance
+  //           .collection("Quiz")
+  //           .doc(quizId)
+  //           .collection("QuestionsData")
+  //           .snapshots(),
+  //       builder: (context, snapshot) {
+  //         return snapshot.data == null
+  //             ? Container()
+  //             : ListView.builder(
+  //                 itemCount: snapshot.data.documents.length,
+  //                 itemBuilder: (context, index) {
+  //                   DocumentSnapshot course = snapshot.data.documents[index];
+  //                   return Container();
+  //                 });
+  //       });
 
-    options.shuffle();
+  //   // questionModel.question = FirebaseFirestore.instance.collection("Quiz").doc(quizID).collection("QuestionsData")["Question"];
 
-    questionModel.option1 = options[0];
-    questionModel.option2 = options[1];
-    questionModel.option3 = options[2];
-    questionModel.option4 = options[3];
-    questionModel.correctOption = questionsSnapshot.data["option1"];
-    questionModel.answer = false;
+  //   //   List options = [
+  //   //     FirebaseFirestore.instance
+  //   //         .collection("Quiz")
+  //   //         .doc(quizId)
+  //   //         .collection("QuestionsData")["option2"],
+  //   //     questionsSnapshot.data["option2"],
+  //   //     questionsSnapshot.data["option3"],
+  //   //     questionsSnapshot.data["option4"],
+  //   //   ];
 
-    return questionModel;
-  }
+  //   //   options.shuffle();
+
+  //   //   questionModel.option1 = options[0];
+  //   //   questionModel.option2 = options[1];
+  //   //   questionModel.option3 = options[2];
+  //   //   questionModel.option4 = options[3];
+  //   //   questionModel.correctOption = questionsSnapshot.data["option1"];
+  //   //   questionModel.answer = false;
+
+  //   //   return questionModel;
+  //   // }
+  // }
 
   @override
   void initState() {
@@ -85,16 +105,45 @@ class _PlayQuizState extends State<PlayQuiz> {
           children: [
             questionsSnapshot.docs == null
                 ? Container()
-                : ListView.builder(
-                    itemCount: questionsSnapshot.docs.length,
-                    itemBuilder: (context, index) {
-                      return QuizPlayTile(
-                        getQuestionModelFromDatasnapshot(
-                            questionsSnapshot.docs[index]),
-                            index,
-                      );
-                    },
-                  )
+                : StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("Quiz")
+                        .doc(widget.quizID)
+                        .collection("QuestionsData")
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      return snapshot.data == null
+                          ? Container()
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              physics: ClampingScrollPhysics(),
+                              itemCount: snapshot.data.documents.length,
+                              itemBuilder: (context, index) {
+                                DocumentSnapshot course =
+                                    snapshot.data.documents[index];
+                                return QuizPlayTile(
+                                  question: course['question'],
+                                  option1: course['option1'],
+                                  option2: course['option2'],
+                                  option3: course['option3'],
+                                  option4: course['option4'],
+                                  correctOption: course['option1'],
+                                  
+                                  
+                                );
+                              });
+                    })
+
+            // : ListView.builder(
+            //     itemCount: questionsSnapshot.docs.length,
+            //     itemBuilder: (context, index) {
+            //       return QuizPlayTile(
+            //         getQuestionModelFromDatasnapshot(
+            //             questionsSnapshot.docs[index]),
+            //         index,
+            //       );
+            //     },
+            //   )
           ],
         ),
       ),
@@ -103,10 +152,45 @@ class _PlayQuizState extends State<PlayQuiz> {
 }
 
 class QuizPlayTile extends StatefulWidget {
+  final String question, correctOption;
+  final String option1, option2, option3, option4;
+  final bool answer;
   final QuestionModel questionModel;
   final int index;
+  
 
-  QuizPlayTile(this.questionModel, this.index);
+  QuizPlayTile(
+      {this.question,
+      this.index,
+      this.answer,
+      this.correctOption,
+      this.option1,
+      this.option2,
+      this.option3,
+      this.option4,
+      this.questionModel});
+
+  final QuestionModel getQuestionModelFromDatasnapShot() {
+    String a = option1, b = option2, c = option3, d = option4;
+    QuestionModel questionModel = new QuestionModel();
+
+    List<String> options = [
+      a,
+      b,
+      c,
+      d,
+    ];
+    options.shuffle();
+
+    questionModel.option1 = options[0];
+    questionModel.option2 = options[1];
+    questionModel.option3 = options[2];
+    questionModel.option4 = options[3];
+    questionModel.correctOption = option1;
+    questionModel.answer = false;
+
+    return questionModel;
+  }
 
   @override
   _QuizPlayTileState createState() => _QuizPlayTileState();
@@ -120,13 +204,13 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
     return Container(
       child: Column(
         children: [
-          Text(widget.questionModel.question),
+          Text(widget.question),
           SizedBox(
             height: 4,
           ),
           OptionTile(
-            correctAnswer: widget.questionModel.option1,
-            desc: widget.questionModel.option1,
+            correctAnswer: widget.option1,
+            desc: widget.option1,
             option: "A",
             optionSelected: optionSelected,
           ),
@@ -134,8 +218,8 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             height: 4,
           ),
           OptionTile(
-            correctAnswer: widget.questionModel.option1,
-            desc: widget.questionModel.option2,
+            correctAnswer: widget.option1,
+            desc: widget.option2,
             option: "B",
             optionSelected: optionSelected,
           ),
@@ -143,8 +227,8 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             height: 4,
           ),
           OptionTile(
-            correctAnswer: widget.questionModel.option1,
-            desc: widget.questionModel.option3,
+            correctAnswer: widget.option1,
+            desc: widget.option3,
             option: "C",
             optionSelected: optionSelected,
           ),
@@ -152,8 +236,8 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             height: 4,
           ),
           OptionTile(
-            correctAnswer: widget.questionModel.option1,
-            desc: widget.questionModel.option4,
+            correctAnswer: widget.option1,
+            desc: widget.option4,
             option: "D",
             optionSelected: optionSelected,
           ),
