@@ -115,7 +115,7 @@ class _PlayQuizState extends State<PlayQuiz> {
             //         getQuestionModelFromDatasnapshot(
             //             questionsSnapshot.docs[index]),
             //         index,
-            //       );
+            //       );.
             //     },
             //   )
           ],
