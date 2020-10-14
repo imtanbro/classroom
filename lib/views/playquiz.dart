@@ -170,7 +170,7 @@ class QuizPlayTile extends StatefulWidget {
       this.option4,
       this.questionModel});
 
-  final QuestionModel getQuestionModelFromDatasnapShot() {
+    QuestionModel getQuestionModelFromDatasnapShot() {
     String a = option1, b = option2, c = option3, d = option4;
     QuestionModel questionModel = new QuestionModel();
 
