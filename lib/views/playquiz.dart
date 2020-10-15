@@ -88,8 +88,10 @@ class _PlayQuizState extends State<PlayQuiz> {
           children: [
             questionsSnapshot == null
                 ? Container(
-                  child: Center(child: CircularProgressIndicator(),),
-                )
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
                 : StreamBuilder(
                     stream: FirebaseFirestore.instance
                         .collection("Quiz")
@@ -100,6 +102,8 @@ class _PlayQuizState extends State<PlayQuiz> {
                       return snapshot.data == null
                           ? Container()
                           : ListView.builder(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 18, vertical: 10),
                               shrinkWrap: true,
                               physics: ClampingScrollPhysics(),
                               itemCount: snapshot.data.documents.length,
@@ -162,14 +166,14 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
       child: Column(
         children: [
           Text(
-            widget.questionModel.question,
+            "Q${widget.index+1}. ${widget.questionModel.question}",
             style: TextStyle(
               color: Color.fromRGBO(244, 180, 0, 1),
-              fontSize: 20,
+              fontSize: 21,
             ),
           ),
           SizedBox(
-            height: 4,
+            height: 15,
           ),
           GestureDetector(
             onTap: () {
@@ -297,7 +301,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 25,
           )
         ],
       ),

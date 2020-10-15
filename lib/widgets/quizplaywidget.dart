@@ -13,16 +13,21 @@ class _OptionTileState extends State<OptionTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(vertical: 7, horizontal: 5),
       child: Row(
         children: [
           Container(
+            width: 28,
+            height: 28,
             decoration: BoxDecoration(
                 border: Border.all(
                     color: widget.desc == widget.optionSelected
                         ? widget.optionSelected == widget.correctAnswer
                             ?  Colors.green.withOpacity(0.7)
                             : Colors.red.withOpacity(0.7)
-                        : Colors.grey)),
+                        : Colors.grey, width: 1.5),
+                        borderRadius: BorderRadius.circular(30)),
+                        alignment: Alignment.center,
             child: Text(
               "${widget.option}",
               style: TextStyle(
@@ -40,7 +45,7 @@ class _OptionTileState extends State<OptionTile> {
           Text(
             widget.desc,
             style: TextStyle(
-              fontSize: 17,
+              fontSize: 19,
               color: Colors.blue,
             ),
           ),
