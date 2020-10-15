@@ -1,5 +1,6 @@
 import 'package:classroom/models/questionModel.dart';
 import 'package:classroom/services/database.dart';
+import 'package:classroom/views/results.dart';
 import 'package:classroom/widgets/quizplaywidget.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -81,55 +82,64 @@ class _PlayQuizState extends State<PlayQuiz> {
           )
         ],
       ),
-      body: Container(
-        color: Colors.black,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            questionsSnapshot == null
-                ? Container(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  )
-                : StreamBuilder(
-                    stream: FirebaseFirestore.instance
-                        .collection("Quiz")
-                        .doc(widget.quizID)
-                        .collection("QuestionsData")
-                        .snapshots(),
-                    builder: (context, snapshot) {
-                      return snapshot.data == null
-                          ? Container()
-                          : ListView.builder(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 18, vertical: 10),
-                              shrinkWrap: true,
-                              physics: ClampingScrollPhysics(),
-                              itemCount: snapshot.data.documents.length,
-                              itemBuilder: (context, index) {
-                                return QuizPlayTile(
-                                  questionModel:
-                                      getQuestionModelFromDatasnapshot(
-                                          questionsSnapshot.docs[index]),
-                                  index: index,
-                                );
-                              });
-                    })
+      body: SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+          color: Colors.black,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              questionsSnapshot == null
+                  ? Container(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    )
+                  : StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection("Quiz")
+                          .doc(widget.quizID)
+                          .collection("QuestionsData")
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        return snapshot.data == null
+                            ? Container()
+                            : ListView.builder(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 18, vertical: 10),
+                                shrinkWrap: true,
+                                physics: ClampingScrollPhysics(),
+                                itemCount: snapshot.data.documents.length,
+                                itemBuilder: (context, index) {
+                                  return QuizPlayTile(
+                                    questionModel:
+                                        getQuestionModelFromDatasnapshot(
+                                            questionsSnapshot.docs[index]),
+                                    index: index,
+                                  );
+                                });
+                      })
 
-            // : ListView.builder(
-            //     itemCount: questionsSnapshot.docs.length,
-            //     itemBuilder: (context, index) {
-            //       return QuizPlayTile(
-            //         getQuestionModelFromDatasnapshot(
-            //             questionsSnapshot.docs[index]),
-            //         index,
-            //       );.
-            //     },
-            //   ),
-          ],
+              // : ListView.builder(
+              //     itemCount: questionsSnapshot.docs.length,
+              //     itemBuilder: (context, index) {
+              //       return QuizPlayTile(
+              //         getQuestionModelFromDatasnapshot(
+              //             questionsSnapshot.docs[index]),
+              //         index,
+              //       );.
+              //     },
+              //   ),
+            ],
+          ),
         ),
       ),
+
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.check),
+        onPressed: () {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Results(_correct, _incorrect, _total)));
+      },),
     );
   }
 }
