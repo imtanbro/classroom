@@ -11,6 +11,17 @@ class DatabaseService {
     });
   }
 
+  Future<void> addResult(Map result, String quizId) async {
+    await FirebaseFirestore.instance
+        .collection("Quiz")
+        .doc(quizId)
+        .collection("Results")
+        .add(result)
+        .catchError((e) {
+      print(e.toString());
+    });
+  }
+
   Future<void> addQuestionData(Map questionData, String quizId) async {
     await FirebaseFirestore.instance
         .collection("Quiz")

@@ -78,11 +78,9 @@ class _CreateQuizState extends State<CreateQuiz> {
                       TextFormField(
                         validator: (val) {
                           if (val.isEmpty) {
-                            val =
-                                "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ";
-                            return val;
-                          } else {
                             return null;
+                          } else {
+                            return "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ";
                           }
                         },
                         cursorColor: Colors.blue,
