@@ -84,9 +84,12 @@ class _PlayQuizState extends State<PlayQuiz> {
       body: Container(
         color: Colors.black,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            questionsSnapshot.docs == null
-                ? Container()
+            questionsSnapshot == null
+                ? Container(
+                  child: Center(child: CircularProgressIndicator(),),
+                )
                 : StreamBuilder(
                     stream: FirebaseFirestore.instance
                         .collection("Quiz")
