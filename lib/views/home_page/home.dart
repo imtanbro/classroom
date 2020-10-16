@@ -1,5 +1,5 @@
-import 'package:classroom/views/Quiz.dart';
-import 'package:classroom/widgets/widgets.dart';
+import 'package:classroom/helper/constant.dart';
+import 'package:classroom/views/quiz/Quiz.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -11,12 +11,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: appBar(context),
-        backgroundColor: Colors.black,
-      ),
       body: Container(
-        color: Colors.black,
+        color: Colors.white,
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         child: Column(
           children: [
@@ -31,18 +27,25 @@ class _HomeState extends State<Home> {
                     width: MediaQuery.of(context).size.width - 48,
                     height: 200,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Colors.blue, Colors.black87]),
-                    ),
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Colors.white, kPrimaryColor]),
+                        boxShadow: [
+                          BoxShadow(
+                              color: kSecondaryColor.withOpacity(0.2),
+                              offset: Offset(0, 5),
+                              spreadRadius: 5,
+                              blurRadius: 5)
+                        ]),
                     child: Center(
                       child: Text(
                         "Quiz",
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: kSecondaryColor,
+                          fontSize: 40,
                         ),
                       ),
                     ),

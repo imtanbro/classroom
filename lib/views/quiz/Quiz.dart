@@ -1,6 +1,6 @@
 import 'package:classroom/services/database.dart';
-import 'package:classroom/views/create_quiz.dart';
-import 'package:classroom/views/playquiz.dart';
+import 'package:classroom/views/quiz/create_quiz.dart';
+import 'package:classroom/views/quiz/playquiz.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +26,11 @@ class _QuizState extends State<Quiz> {
                   itemCount: snapshot.data.documents.length,
                   itemBuilder: (context, index) {
                     DocumentSnapshot course = snapshot.data.documents[index];
-                    return QuizTile(course['quizDescription'],
-                        course['quizImageURL'], course['quizTitle'], course['quizId']);
+                    return QuizTile(
+                        course['quizDescription'],
+                        course['quizImageURL'],
+                        course['quizTitle'],
+                        course['quizId']);
                   });
         },
       ),
@@ -47,29 +50,8 @@ class _QuizState extends State<Quiz> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.only(right: 9),
-          child: appBar(context),
-        ),
-        backgroundColor: Colors.black,
-        actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: GestureDetector(
-              onTap: () {
-                print("User Profile");
-              },
-              child: Icon(Icons.person),
-            ),
-          )
-        ],
-      ),
       drawer: Drawer(),
-      body: Container(
-        color: Colors.black,
-        child: quizList()
-        ),
+      body: Container(color: Colors.black, child: quizList()),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
@@ -89,41 +71,49 @@ class QuizTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => PlayQuiz(id)));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => PlayQuiz(id)));
       },
-          child: Container(
+      child: Container(
         height: 150,
         margin: EdgeInsets.only(bottom: 8),
         child: Stack(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-                        child: Image.network(imgURL,
-              width: MediaQuery.of(context).size.width-48,
-              fit: BoxFit.cover,          
+              child: Image.network(
+                imgURL,
+                width: MediaQuery.of(context).size.width - 48,
+                fit: BoxFit.cover,
               ),
             ),
             Container(
               decoration: BoxDecoration(
                 color: Color.fromRGBO(20, 20, 20, 0.5),
                 borderRadius: BorderRadius.circular(10),
-                ),
+              ),
               alignment: Alignment.center,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(title,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),),
-                  SizedBox(height: 6,),
-                  Text(desc,
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 15,
-                  ),),
+                  Text(
+                    title,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  Text(
+                    desc,
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 15,
+                    ),
+                  ),
                 ],
               ),
             )
