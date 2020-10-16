@@ -177,6 +177,11 @@ class QuizPlayTile extends StatefulWidget {
 
 class _QuizPlayTileState extends State<QuizPlayTile> {
   String optionSelected = "";
+  DatabaseService databaseService = new DatabaseService();
+
+  uploadQuizData() async {
+
+  }
 
   @override
   Widget build(BuildContext context) {
