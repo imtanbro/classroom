@@ -1,6 +1,6 @@
 import 'package:classroom/helper/constant.dart';
 import 'package:classroom/services/auth.dart';
-import 'package:classroom/views/home_page/home.dart';
+import 'package:classroom/views/main_screen.dart';
 import 'package:classroom/views/signup/signup.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,7 +36,7 @@ class _SignInState extends State<SignIn> {
           });
           HelperFunction.saveUserLoggedInDetails(isloggedin: true);
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Home()));
+              context, MaterialPageRoute(builder: (context) => MainScreen()));
         }
       });
     }

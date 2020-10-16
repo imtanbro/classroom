@@ -1,9 +1,9 @@
 import 'package:classroom/helper/constant.dart';
 import 'package:classroom/services/auth.dart';
+import 'package:classroom/views/main_screen.dart';
 import 'package:classroom/views/sign_in/signin.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import '../home_page/home.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -30,7 +30,7 @@ class _SignUpState extends State<SignUp> {
           });
           HelperFunction.saveUserLoggedInDetails(isloggedin: true);
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Home()));
+              context, MaterialPageRoute(builder: (context) => MainScreen()));
         }
       });
     }
