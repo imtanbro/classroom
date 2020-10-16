@@ -118,6 +118,7 @@ class _PlayQuizState extends State<PlayQuiz> {
                                         getQuestionModelFromDatasnapshot(
                                             questionsSnapshot.docs[index]),
                                     index: index,
+                                    quizID: widget.quizID,
                                   );
                                 });
                       })
@@ -158,6 +159,7 @@ class QuizPlayTile extends StatefulWidget {
   // final bool answer;
   final QuestionModel questionModel;
   final int index;
+  final String quizID;
 
   QuizPlayTile(
       {
@@ -169,7 +171,8 @@ class QuizPlayTile extends StatefulWidget {
       // this.option2,
       // this.option3,
       // this.option4,
-      this.questionModel});
+      this.questionModel,
+      this.quizID});
 
   @override
   _QuizPlayTileState createState() => _QuizPlayTileState();
@@ -180,8 +183,20 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
   DatabaseService databaseService = new DatabaseService();
 
   uploadQuizData() async {
+  
+    Map<String, String> result = {
+      "Question": widget.questionModel.question,
+      "OptionSelected" : optionSelected,
+      "Correct Option" : widget.questionModel.correctOption,
+      };
 
+  databaseService.addResult(result, widget.quizID);
+    
   }
+  
+
+ 
+
 
   @override
   Widget build(BuildContext context) {
