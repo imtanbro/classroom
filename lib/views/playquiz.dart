@@ -8,12 +8,14 @@ import 'package:flutter/material.dart';
 
 class PlayQuiz extends StatefulWidget {
   final String quizID;
+
   PlayQuiz(this.quizID);
   @override
   _PlayQuizState createState() => _PlayQuizState();
 }
 
 int _total = 0, _correct = 0, _incorrect = 0, _notAttempted = 0;
+bool _attemptedquiz = false;
 
 class _PlayQuizState extends State<PlayQuiz> {
   DatabaseService databaseService = new DatabaseService();
@@ -83,8 +85,8 @@ class _PlayQuizState extends State<PlayQuiz> {
         ],
       ),
       body: SingleChildScrollView(
-              child: Container(
-                height: MediaQuery.of(context).size.height,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
           color: Colors.black,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,12 +136,18 @@ class _PlayQuizState extends State<PlayQuiz> {
           ),
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.check),
         onPressed: () {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Results(_correct, _incorrect, _total)));
-      },),
+          setState(() {
+            _attemptedquiz = true;
+          });
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Results(_correct, _incorrect, _total)));
+        },
+      ),
     );
   }
 }
@@ -176,7 +184,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
       child: Column(
         children: [
           Text(
-            "Q${widget.index+1}. ${widget.questionModel.question}",
+            "Q${widget.index + 1}. ${widget.questionModel.question}",
             style: TextStyle(
               color: Color.fromRGBO(244, 180, 0, 1),
               fontSize: 21,
