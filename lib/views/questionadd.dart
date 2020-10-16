@@ -22,7 +22,7 @@ class _AddQuestionState extends State<AddQuestion> {
       });
 
       Map<String, String> quizMap = {
-        "question": question,
+        "Question": question,
         "option1": option1,
         "option2": option2,
         "option3": option3,
@@ -69,7 +69,6 @@ class _AddQuestionState extends State<AddQuestion> {
           : Form(
               key: _formKey,
               child: Container(
-                
                 color: Colors.black,
                 child: Padding(
                   padding: const EdgeInsets.all(12.5),
