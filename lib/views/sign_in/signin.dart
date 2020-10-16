@@ -1,7 +1,7 @@
 import 'package:classroom/helper/constant.dart';
 import 'package:classroom/services/auth.dart';
-import 'package:classroom/views/home.dart';
-import 'package:classroom/views/signup.dart';
+import 'package:classroom/views/home_page/home.dart';
+import 'package:classroom/views/signup/signup.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

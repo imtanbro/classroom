@@ -1,5 +1,5 @@
 import 'package:classroom/services/database.dart';
-import 'package:classroom/views/questionadd.dart';
+import 'package:classroom/views/quiz/questionadd.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';

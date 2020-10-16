@@ -1,6 +1,6 @@
 import 'package:classroom/models/questionModel.dart';
 import 'package:classroom/services/database.dart';
-import 'package:classroom/views/results.dart';
+import 'package:classroom/views/quiz/results.dart';
 import 'package:classroom/widgets/quizplaywidget.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -83,8 +83,8 @@ class _PlayQuizState extends State<PlayQuiz> {
         ],
       ),
       body: SingleChildScrollView(
-              child: Container(
-                height: MediaQuery.of(context).size.height,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
           color: Colors.black,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,12 +134,15 @@ class _PlayQuizState extends State<PlayQuiz> {
           ),
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.check),
         onPressed: () {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Results(_correct, _incorrect, _total)));
-      },),
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Results(_correct, _incorrect, _total)));
+        },
+      ),
     );
   }
 }
@@ -176,7 +179,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
       child: Column(
         children: [
           Text(
-            "Q${widget.index+1}. ${widget.questionModel.question}",
+            "Q${widget.index + 1}. ${widget.questionModel.question}",
             style: TextStyle(
               color: Color.fromRGBO(244, 180, 0, 1),
               fontSize: 21,

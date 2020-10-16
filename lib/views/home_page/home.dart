@@ -1,4 +1,4 @@
-import 'package:classroom/views/Quiz.dart';
+import 'package:classroom/views/quiz/Quiz.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
