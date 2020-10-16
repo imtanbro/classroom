@@ -44,6 +44,7 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: appBar(context),
@@ -78,7 +79,7 @@ class _SignInState extends State<SignIn> {
                       },
                     ),
                     SizedBox(
-                      height: 10,
+                      height: size.height * 0.01,
                     ),
                     TextFormField(
                       obscureText: true,
@@ -95,7 +96,7 @@ class _SignInState extends State<SignIn> {
                       },
                     ),
                     SizedBox(
-                      height: 30,
+                      height: size.height * 0.035,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -117,9 +118,9 @@ class _SignInState extends State<SignIn> {
                           ),
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        height: 50,
+                        height: size.height * 0.08,
                         alignment: Alignment.center,
-                        width: MediaQuery.of(context).size.width - 48,
+                        width: size.width * 0.8,
                         child: Text(
                           "Sign In",
                           style: TextStyle(
@@ -130,7 +131,7 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: size.height * 0.02,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -165,9 +166,10 @@ class _SignInState extends State<SignIn> {
                         )
                       ],
                     ),
-                    SizedBox(
-                      height: 100,
-                    )
+                    // SizedBox(
+                    //  height: 100,
+                    //)
+                    Spacer()
                   ],
                 ),
               ),

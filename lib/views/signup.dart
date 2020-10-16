@@ -17,27 +17,28 @@ class _SignUpState extends State<SignUp> {
   bool _isloading = false;
 
   signUp() async {
-    if(_formKey.currentState.validate()) {
+    if (_formKey.currentState.validate()) {
       setState(() {
         _isloading = true;
       });
-      await authService.signUpWithEmailAndPassword(email, password).then((value) {
+      await authService
+          .signUpWithEmailAndPassword(email, password)
+          .then((value) {
         if (value != null) {
           setState(() {
             _isloading = false;
           });
           HelperFunction.saveUserLoggedInDetails(isloggedin: true);
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Home())
-          );
+              context, MaterialPageRoute(builder: (context) => Home()));
         }
       });
-
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: appBar(context),
@@ -45,103 +46,108 @@ class _SignUpState extends State<SignUp> {
         elevation: 0.0,
         brightness: Brightness.light,
       ),
-      body: _isloading ? Container(
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
-      ) : Form(
-        key: _formKey,
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-          child: Column(
-            children: [
-              Spacer(),
-              TextFormField(
-                validator: (val) {
-                  return val.isEmpty ? "Enter Name" : null;
-                },
-                decoration: InputDecoration(
-                  hintText: "Name",
-                ),
-                onChanged: (val) {
-                  name = val;
-                },
+      body: _isloading
+          ? Container(
+              child: Center(
+                child: CircularProgressIndicator(),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                validator: (val) {
-                  return val.isEmpty ? "Enter valid Email Address" : null;
-                },
-                decoration: InputDecoration(
-                  hintText: "Email",
-                ),
-                onChanged: (val) {
-                  email = val;
-                },
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                obscureText: true,
-                validator: (val) {
-                  return val.length < 6 ? "Enter Correct Password" : null;
-                },
-                decoration: InputDecoration(
-                  hintText: "Password",
-                ),
-                onChanged: (val) {
-                  password = val;
-                },
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              GestureDetector(
-                onTap: () {
-                  signUp();
-                  print("Clicked on Sign UP Gradient Button");
-                },
-                child: blueButton(context, "Sign Up"),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => SignIn()));
-                        print("Clicked on Sign IN Already have account");
+            )
+          : Form(
+              key: _formKey,
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                child: Column(
+                  children: [
+                    Spacer(),
+                    TextFormField(
+                      validator: (val) {
+                        return val.isEmpty ? "Enter Name" : null;
                       },
-                      child: Text(
-                        "Already have an Account?",
-                        style: TextStyle(fontSize: 15),
-                      )),
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => SignIn()));
-                        print("Clicked on Sign IN");
+                      decoration: InputDecoration(
+                        hintText: "Name",
+                      ),
+                      onChanged: (val) {
+                        name = val;
                       },
-                      child: Text(
-                        " Sign In",
-                        style: TextStyle(
-                            fontSize: 15, decoration: TextDecoration.underline),
-                      ))
-                ],
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    TextFormField(
+                      validator: (val) {
+                        return val.isEmpty ? "Enter valid Email Address" : null;
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Email",
+                      ),
+                      onChanged: (val) {
+                        email = val;
+                      },
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    TextFormField(
+                      obscureText: true,
+                      validator: (val) {
+                        return val.length < 6 ? "Enter Correct Password" : null;
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Password",
+                      ),
+                      onChanged: (val) {
+                        password = val;
+                      },
+                    ),
+                    SizedBox(
+                      height: size.height * 0.035,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        signUp();
+                        print("Clicked on Sign UP Gradient Button");
+                      },
+                      child: blueButton(context, "Sign Up"),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.02,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignIn()));
+                              print("Clicked on Sign IN Already have account");
+                            },
+                            child: Text(
+                              "Already have an Account?",
+                              style: TextStyle(fontSize: 15),
+                            )),
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignIn()));
+                              print("Clicked on Sign IN");
+                            },
+                            child: Text(
+                              " Sign In",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  decoration: TextDecoration.underline),
+                            ))
+                      ],
+                    ),
+                    Spacer()
+                  ],
+                ),
               ),
-              SizedBox(
-                height: 100,
-              )
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 }
