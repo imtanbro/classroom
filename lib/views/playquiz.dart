@@ -170,7 +170,7 @@ class QuizPlayTile extends StatefulWidget {
       // this.option1,
       // this.option2,
       // this.option3,
-      // this.option4,1
+      // this.option4,
       this.questionModel,
       this.quizID});
 
