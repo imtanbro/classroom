@@ -78,7 +78,7 @@ class _PlayQuizState extends State<PlayQuiz> {
                       ),
                     )
                   : StreamBuilder(
-                      stream: FirebaseFirestore.instance
+                      //stream: FirebaseFirestore.instance
                           .collection("Quiz")
                           .doc(widget.quizID)
                           .collection("QuestionsData")
