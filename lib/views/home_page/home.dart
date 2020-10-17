@@ -12,7 +12,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.white,
+        color: kSecondaryColor.withOpacity(0.01),
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         child: Column(
           children: [

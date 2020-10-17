@@ -1,3 +1,4 @@
+import 'package:classroom/helper/constant.dart';
 import 'package:classroom/services/database.dart';
 import 'package:classroom/views/quiz/create_quiz.dart';
 import 'package:classroom/views/quiz/playquiz.dart';
@@ -50,8 +51,10 @@ class _QuizState extends State<Quiz> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: appBar(context),
       drawer: Drawer(),
-      body: Container(color: Colors.black, child: quizList()),
+      body: Container(
+          color: kSecondaryColor.withOpacity(0.01), child: quizList()),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
