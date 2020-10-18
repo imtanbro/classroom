@@ -52,10 +52,10 @@ class _QuizState extends State<Quiz> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context),
-      drawer: Drawer(),
       body: Container(
           color: kSecondaryColor.withOpacity(0.01), child: quizList()),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: kPrimaryColor,
         child: Icon(Icons.add),
         onPressed: () {
           Navigator.push(

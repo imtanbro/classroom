@@ -121,3 +121,42 @@ Widget inputTextStylingForm(
     ),
   );
 }
+
+Padding homeScreenBox(BuildContext context, String name, Widget _widget) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+    child: GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => _widget));
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 200,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.white, kPrimaryColor.withOpacity(0.8)]),
+            boxShadow: [
+              BoxShadow(
+                  color: kSecondaryColor.withOpacity(0.2),
+                  offset: Offset(0, 5),
+                  spreadRadius: 5,
+                  blurRadius: 5)
+            ]),
+        child: Center(
+          child: Text(
+            name,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: kSecondaryColor,
+              fontSize: 40,
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
