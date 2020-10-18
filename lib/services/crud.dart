@@ -1,3 +1,4 @@
+import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class CRUD extends StatefulWidget {
@@ -10,7 +11,7 @@ class _CRUDState extends State<CRUD> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: ,
+        title: appBar(context),
       ),
     );
   }
