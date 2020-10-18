@@ -24,7 +24,7 @@ AppBar appBar(BuildContext context) {
         ])),
     actions: <Widget>[
       IconButton(
-          icon: Icon(Icons.notifications, color: kSecondaryColor),
+          icon: Icon(Icons.exit_to_app, color: kSecondaryColor),
           onPressed: () {})
     ],
     centerTitle: true,
