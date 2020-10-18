@@ -15,7 +15,7 @@ class _CRUDState extends State<CRUD> {
         backgroundColor: Colors.black,
       ),
       body: Container(
-        
+        color: Colors.black,
       ),
     );
   }
