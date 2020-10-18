@@ -1,8 +1,8 @@
 import 'package:classroom/helper/constant.dart';
-import 'package:classroom/views/classroom/classroom.dart';
 import 'package:classroom/views/home_page/home.dart';
 import 'package:classroom/views/profile/profilescreen.dart';
 import 'package:classroom/views/study_material/studymaterial.dart';
+import 'package:classroom/views/temporary/temporary.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -13,12 +13,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
-  List<Widget> _children = [
-    Home(),
-    Classroom(),
-    StudyMaterial(),
-    ProfileScreen()
-  ];
+  List<Widget> _children = [Home(), Temp(), StudyMaterial(), ProfileScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

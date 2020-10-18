@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Classroom extends StatelessWidget {
+class Temp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container();
