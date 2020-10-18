@@ -12,7 +12,7 @@ class _CRUDState extends State<CRUD> {
     return Scaffold(
       appBar: AppBar(
         title: appBar(context),
-        backgroundColor: ,
+        backgroundColor: Colors.black,
       ),
     );
   }
