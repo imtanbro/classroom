@@ -2,6 +2,7 @@ import 'package:classroom/helper/constant.dart';
 import 'package:classroom/services/auth.dart';
 import 'package:classroom/views/main_screen.dart';
 import 'package:classroom/views/signup/signup.dart';
+import 'package:classroom/views/teacher_main_screen/teacher_main_screen.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -62,115 +63,158 @@ class _SignInState extends State<SignIn> {
               key: _formKey,
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-                child: Column(
-                  children: [
-                    Spacer(),
-                    TextFormField(
-                      validator: (val) {
-                        return isEmail(val)
-                            ? null
-                            : "Enter Valid Email Address";
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Email",
-                      ),
-                      onChanged: (val) {
-                        email = val;
-                      },
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      validator: (val) {
-                        return val.isEmpty && val.length > 6
-                            ? "Enter Password"
-                            : null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Password",
-                      ),
-                      onChanged: (val) {
-                        password = val;
-                      },
-                    ),
-                    SizedBox(
-                      height: size.height * 0.035,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        signIn();
-                        print("Clicked on Sign IN Linear Gradient");
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Color.fromRGBO(66, 133, 244, 1),
-                              Color.fromRGBO(219, 68, 55, 1),
-                              Color.fromRGBO(244, 180, 0, 1),
-                              Color.fromRGBO(15, 157, 88, 1),
-                            ],
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                          ),
-                          borderRadius: BorderRadius.circular(30),
+                height: size.height * 0.9,
+                width: size.width,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextFormField(
+                        validator: (val) {
+                          return isEmail(val)
+                              ? null
+                              : "Enter Valid Email Address";
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Email",
                         ),
-                        height: size.height * 0.08,
-                        alignment: Alignment.center,
-                        width: size.width * 0.8,
-                        child: Text(
-                          "Sign In",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        ),
+                        onChanged: (val) {
+                          email = val;
+                        },
                       ),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.02,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignUp()));
-                            print("Clicked on don't have an Account");
-                          },
+                      SizedBox(
+                        height: size.height * 0.01,
+                      ),
+                      TextFormField(
+                        obscureText: true,
+                        validator: (val) {
+                          return val.isEmpty && val.length > 6
+                              ? "Enter Password"
+                              : null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Password",
+                        ),
+                        onChanged: (val) {
+                          password = val;
+                        },
+                      ),
+                      SizedBox(
+                        height: size.height * 0.035,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          signIn();
+                          print("Clicked on Sign IN Linear Gradient");
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Color.fromRGBO(66, 133, 244, 1),
+                                Color.fromRGBO(219, 68, 55, 1),
+                                Color.fromRGBO(244, 180, 0, 1),
+                                Color.fromRGBO(15, 157, 88, 1),
+                              ],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          height: size.height * 0.08,
+                          alignment: Alignment.center,
+                          width: size.width * 0.8,
                           child: Text(
-                            "Dont have an Account?",
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignUp()));
-                            print("Clicked on Sign Up");
-                          },
-                          child: Text(
-                            " Sign Up",
+                            "Sign In",
                             style: TextStyle(
-                                fontSize: 15,
-                                decoration: TextDecoration.underline),
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
                           ),
-                        )
-                      ],
-                    ),
-                    // SizedBox(
-                    //  height: 100,
-                    //)
-                    Spacer()
-                  ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.02,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUp()));
+                              print("Clicked on don't have an Account");
+                            },
+                            child: Text(
+                              "Dont have an Account?",
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUp()));
+                              print("Clicked on Sign Up");
+                            },
+                            child: Text(
+                              " Sign Up",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  decoration: TextDecoration.underline),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => TeacherMainScreen(),
+                              ));
+                          print("Clicked on Sign IN Linear Gradient");
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Color.fromRGBO(66, 133, 244, 1),
+                                Color.fromRGBO(219, 68, 55, 1),
+                                Color.fromRGBO(244, 180, 0, 1),
+                                Color.fromRGBO(15, 157, 88, 1),
+                              ],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          height: size.height * 0.08,
+                          alignment: Alignment.center,
+                          width: size.width * 0.8,
+                          child: Text(
+                            "Teacher Sign In",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // SizedBox(
+                      //  height: 100,
+                      //)
+                    ],
+                  ),
                 ),
               ),
             ),
