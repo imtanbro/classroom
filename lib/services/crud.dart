@@ -8,7 +8,7 @@ class CRUD extends StatefulWidget {
 class _CRUDState extends State<CRUD> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
       
     );
   }
