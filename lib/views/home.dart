@@ -1,3 +1,4 @@
+import 'package:classroom/services/crud.dart';
 import 'package:classroom/views/Quiz.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,7 @@ class _HomeState extends State<Home> {
                 GestureDetector(
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Quiz()));
+                        MaterialPageRoute(builder: (context) => CRUD()));
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width - 48,
