@@ -44,13 +44,13 @@ class _AssignmentsState extends State<Assignments> {
       appBar: appBar(context),
       body: Container(
           color: kSecondaryColor.withOpacity(0.01), child: assignmentList()),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: kPrimaryColor,
-        child: Icon(Icons.add),
-        onPressed: () {
-          debugPrint("floating action button tapped");
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: kPrimaryColor,
+      //   child: Icon(Icons.add),
+      //   onPressed: () {
+      //     debugPrint("floating action button tapped");
+      //);
+      // },
     );
   }
 }

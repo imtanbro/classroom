@@ -1,6 +1,5 @@
 import 'package:classroom/helper/constant.dart';
 import 'package:classroom/services/database.dart';
-import 'package:classroom/views/quiz/create_quiz.dart';
 import 'package:classroom/views/quiz/playquiz.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -54,14 +53,13 @@ class _QuizState extends State<Quiz> {
       appBar: appBar(context),
       body: Container(
           color: kSecondaryColor.withOpacity(0.01), child: quizList()),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: kPrimaryColor,
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CreateQuiz()));
-        },
-      ),
+      //floatingActionButton: FloatingActionButton(
+      // backgroundColor: kPrimaryColor,
+      // child: Icon(Icons.add),
+      // onPressed: () {
+      //  Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => CreateQuiz()));
+      // },
     );
   }
 }
