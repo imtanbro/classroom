@@ -1,6 +1,6 @@
 import 'package:classroom/helper/constant.dart';
-import 'package:classroom/views/classroom/classroom.dart';
 import 'package:classroom/views/home_page/home.dart';
+import 'package:classroom/views/notifications/notifications.dart';
 import 'package:classroom/views/profile/profilescreen.dart';
 import 'package:classroom/views/study_material/studymaterial.dart';
 import 'package:classroom/widgets/widgets.dart';
@@ -15,7 +15,7 @@ class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
   List<Widget> _children = [
     Home(),
-    Classroom(),
+    Notifications(),
     StudyMaterial(),
     ProfileScreen()
   ];
@@ -32,8 +32,8 @@ class _MainScreenState extends State<MainScreen> {
                   title: Text("Home"),
                   backgroundColor: kPrimaryColor),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.people),
-                  title: Text("Classroom"),
+                  icon: Icon(Icons.notifications),
+                  title: Text("Notifications"),
                   backgroundColor: kPrimaryColor),
               BottomNavigationBarItem(
                   icon: Icon(Icons.book),
