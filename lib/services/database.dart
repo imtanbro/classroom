@@ -40,4 +40,15 @@ class DatabaseService {
         .collection("QuestionsData")
         .get();
   }
+
+  Future<void> addAssignmentData(
+      Map assignmentData, String assignmentId) async {
+    await FirebaseFirestore.instance
+        .collection("Assignments")
+        .doc("assignmentId")
+        .set(assignmentData)
+        .catchError((e) {
+      print(e.toString());
+    });
+  }
 }

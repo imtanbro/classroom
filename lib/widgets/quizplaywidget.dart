@@ -1,4 +1,3 @@
-import 'package:classroom/models/questionModel.dart';
 import 'package:flutter/material.dart';
 
 class OptionTile extends StatefulWidget {
@@ -23,11 +22,12 @@ class _OptionTileState extends State<OptionTile> {
                 border: Border.all(
                     color: widget.desc == widget.optionSelected
                         ? widget.optionSelected == widget.correctAnswer
-                            ?  Colors.green.withOpacity(0.7)
+                            ? Colors.green.withOpacity(0.7)
                             : Colors.red.withOpacity(0.7)
-                        : Colors.grey, width: 1.5),
-                        borderRadius: BorderRadius.circular(30)),
-                        alignment: Alignment.center,
+                        : Colors.grey,
+                    width: 1.5),
+                borderRadius: BorderRadius.circular(30)),
+            alignment: Alignment.center,
             child: Text(
               "${widget.option}",
               style: TextStyle(
@@ -114,7 +114,6 @@ class _OptionTileState extends State<OptionTile> {
 //   }
 // }
 
-
 // class NoOfQuestionTile extends StatefulWidget {
 //   final String text;
 //   final int number;
@@ -165,4 +164,3 @@ class _OptionTileState extends State<OptionTile> {
 //     );
 //   }
 // }
-

@@ -1,61 +1,33 @@
+import 'package:classroom/helper/constant.dart';
 import 'package:flutter/material.dart';
 
-Widget appBar(BuildContext context) {
-  return Center(
-    child: RichText(
-      text: TextSpan(
-        style: TextStyle(
-          fontSize: 30,
-        ),
-        children: <TextSpan>[
-          TextSpan(
-              text: 'G',
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(66, 133, 244, 1))),
-          TextSpan(
-              text: 'o',
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(219, 68, 55, 1))),
-          TextSpan(
-              text: 'o',
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(244, 180, 0, 1))),
-          TextSpan(
-              text: 'g',
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(66, 133, 244, 1))),
-          TextSpan(
-              text: 'l',
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(15, 157, 88, 1))),
-          TextSpan(
-              text: 'e',
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(219, 68, 55, 1))),
-          TextSpan(
-              text: 'K',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(244, 180, 0, 1))),
-          TextSpan(
-              text: 'a',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(66, 133, 244, 1))),
-          TextSpan(
-              text: 'r',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(219, 68, 55, 1))),
-        ],
-      ),
+AppBar appBar(BuildContext context) {
+  return AppBar(
+    elevation: 0,
+    backgroundColor: Colors.white,
+    leading: IconButton(
+      icon: Icon(Icons.dashboard, color: kPrimaryColor),
+      onPressed: () {},
     ),
+    title: RichText(
+        text: TextSpan(
+            style: Theme.of(context)
+                .textTheme
+                .headline6
+                .copyWith(fontWeight: FontWeight.w900),
+            children: [
+          TextSpan(
+            text: "School",
+            style: TextStyle(color: kSecondaryColor),
+          ),
+          TextSpan(text: "Pool", style: TextStyle(color: kPrimaryColor))
+        ])),
+    actions: <Widget>[
+      IconButton(
+          icon: Icon(Icons.exit_to_app, color: kSecondaryColor),
+          onPressed: () {})
+    ],
+    centerTitle: true,
   );
 }
 
@@ -87,12 +59,6 @@ Widget blueButton(BuildContext context, String label) {
   );
 }
 
-
-
-
-
-
-
 Widget customButton(BuildContext context, String label, buttonWidth) {
   return Container(
     padding: EdgeInsets.symmetric(vertical: 10),
@@ -110,7 +76,9 @@ Widget customButton(BuildContext context, String label, buttonWidth) {
     ),
     height: 50,
     alignment: Alignment.center,
-    width:buttonWidth != null ? buttonWidth : MediaQuery.of(context).size.width - 48,
+    width: buttonWidth != null
+        ? buttonWidth
+        : MediaQuery.of(context).size.width - 48,
     child: Text(
       label,
       style: TextStyle(
@@ -120,14 +88,6 @@ Widget customButton(BuildContext context, String label, buttonWidth) {
     ),
   );
 }
-
-
-
-
-
-
-
-
 
 Widget inputTextStylingForm(
     BuildContext context, String label, String errorMessage) {
@@ -158,6 +118,45 @@ Widget inputTextStylingForm(
       onChanged: (val) {
         return val;
       },
+    ),
+  );
+}
+
+Padding homeScreenBox(BuildContext context, String name, Widget _widget) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+    child: GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => _widget));
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 200,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.white, kPrimaryColor.withOpacity(0.8)]),
+            boxShadow: [
+              BoxShadow(
+                  color: kSecondaryColor.withOpacity(0.2),
+                  offset: Offset(0, 5),
+                  spreadRadius: 5,
+                  blurRadius: 5)
+            ]),
+        child: Center(
+          child: Text(
+            name,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: kSecondaryColor,
+              fontSize: 40,
+            ),
+          ),
+        ),
+      ),
     ),
   );
 }
