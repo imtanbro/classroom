@@ -36,11 +36,11 @@ Widget blueButton(BuildContext context, String label) {
     padding: EdgeInsets.symmetric(vertical: 10),
     decoration: BoxDecoration(
       gradient: LinearGradient(
-        colors: [
-          Color.fromRGBO(66, 133, 244, 1),
-          Color.fromRGBO(219, 68, 55, 1),
-          Color.fromRGBO(244, 180, 0, 1),
-        ],
+        //   colors: [
+        //    Color.fromRGBO(66, 133, 244, 1),
+        //   Color.fromRGBO(219, 68, 55, 1),
+        //  Color.fromRGBO(244, 180, 0, 1),
+        //     ],
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
       ),
@@ -63,15 +63,16 @@ Widget customButton(BuildContext context, String label, buttonWidth) {
   return Container(
     padding: EdgeInsets.symmetric(vertical: 10),
     decoration: BoxDecoration(
-      gradient: LinearGradient(
-        colors: [
-          Color.fromRGBO(66, 133, 244, 1),
-          Color.fromRGBO(219, 68, 55, 1),
-          Color.fromRGBO(244, 180, 0, 1),
-        ],
-        begin: Alignment.centerLeft,
-        end: Alignment.centerRight,
-      ),
+      color: kPrimaryColor,
+      // gradient: LinearGradient(
+      // colors: [
+      //   Color.fromRGBO(66, 133, 244, 1),
+      //   Color.fromRGBO(219, 68, 55, 1),
+      //   Color.fromRGBO(244, 180, 0, 1),
+      // ],
+      // begin: Alignment.centerLeft,
+      //  end: Alignment.centerRight,
+      // ),
       borderRadius: BorderRadius.circular(30),
     ),
     height: 50,
@@ -135,10 +136,11 @@ Padding homeScreenBox(BuildContext context, String name, Widget _widget) {
         height: 200,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Colors.white, kPrimaryColor.withOpacity(0.8)]),
+            color: Colors.white,
+            // gradient: LinearGradient(
+            //     begin: Alignment.topCenter,
+            //     end: Alignment.bottomCenter,
+            //     colors: [Colors.white, kPrimaryColor.withOpacity(0.8)]),
             boxShadow: [
               BoxShadow(
                   color: kSecondaryColor.withOpacity(0.2),

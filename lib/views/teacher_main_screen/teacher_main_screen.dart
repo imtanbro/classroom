@@ -6,8 +6,9 @@ class TeacherMainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(context),
-      body: homeScreenBox(context, "Create Quiz", CreateQuiz()),
-    );
+        appBar: appBar(context),
+        body: homeScreenBox(context, "Create Quiz", CreateQuiz())
+        // homeScreenBox(context, "Create Assignment", CreateAssignments())
+        );
   }
 }
