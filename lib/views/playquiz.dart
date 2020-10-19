@@ -1,6 +1,7 @@
 import 'package:classroom/models/questionModel.dart';
 import 'package:classroom/services/database.dart';
-import 'package:classroom/views/results.dart';
+import 'package:classroom/views/quiz/results.dart';
+// import 'package:classroom/views/results.dart';
 import 'package:classroom/widgets/quizplaywidget.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,7 +16,7 @@ class PlayQuiz extends StatefulWidget {
 }
 
 int _total = 0, _correct = 0, _incorrect = 0, _notAttempted = 0;
-bool _attemptedquiz = false;
+// bool _attemptedquiz = false;
 
 class _PlayQuizState extends State<PlayQuiz> {
   DatabaseService databaseService = new DatabaseService();
@@ -144,7 +145,7 @@ class _PlayQuizState extends State<PlayQuiz> {
         child: Icon(Icons.check),
         onPressed: () {
           setState(() {
-            _attemptedquiz = true;
+            // _attemptedquiz = true;
           });
           Navigator.pushReplacement(
               context,
