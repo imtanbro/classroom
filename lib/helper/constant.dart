@@ -1,24 +1,25 @@
-import 'package:classroom/views/home.dart';
-import 'package:classroom/views/signin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HelperFunction {
-  static String USERLOGGEDINKEY = "UserLoggedInKey";
+  static String uSERLOGGEDINKEY = "UserLoggedInKey";
 
   static saveUserLoggedInDetails({@required bool isloggedin}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool(USERLOGGEDINKEY, isloggedin);
+    prefs.setBool(uSERLOGGEDINKEY, isloggedin);
   }
 
   static Future<bool> getUserLoggedInDetails({bool isloggedin}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.get(USERLOGGEDINKEY);
-
+    return prefs.get(uSERLOGGEDINKEY);
   }
-
 }
+
+const kPrimaryColor = Color(0xffffc61f);
+const kSecondaryColor = Color(0xffb5bfd0);
+const kTextColor = Color(0xff50505d);
+const kTextLightColor = Color(0xff6a727d);
 
 // enum AuthStatus { notLoggedIn, loggedIn }
 

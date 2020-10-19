@@ -1,6 +1,6 @@
 import 'package:classroom/helper/constant.dart';
-import 'package:classroom/views/home.dart';
-import 'package:classroom/views/signin.dart';
+import 'package:classroom/views/home_page/home.dart';
+import 'package:classroom/views/sign_in/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -21,7 +21,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
+
     super.initState();
   }
 
