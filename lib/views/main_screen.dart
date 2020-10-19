@@ -29,19 +29,19 @@ class _MainScreenState extends State<MainScreen> {
             items: [
               BottomNavigationBarItem(
                   icon: Icon(Icons.home),
-                  title: Text("Home"),
+                  label: "Home",
                   backgroundColor: kPrimaryColor),
               BottomNavigationBarItem(
                   icon: Icon(Icons.notifications),
-                  title: Text("Notifications"),
+                  label: "Notifications",
                   backgroundColor: kPrimaryColor),
               BottomNavigationBarItem(
                   icon: Icon(Icons.book),
-                  title: Text("StudyMaterial"),
+                  label: "StudyMaterial",
                   backgroundColor: kPrimaryColor),
               BottomNavigationBarItem(
                   icon: Icon(Icons.person),
-                  title: Text("Profile"),
+                  label: "Profile",
                   backgroundColor: kPrimaryColor)
             ],
             onTap: (index) {
