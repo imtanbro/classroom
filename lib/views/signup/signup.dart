@@ -1,9 +1,11 @@
 import 'package:classroom/helper/constant.dart';
 import 'package:classroom/services/auth.dart';
+import 'package:classroom/services/database.dart';
 import 'package:classroom/views/main_screen.dart';
 import 'package:classroom/views/sign_in/signin.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:random_string/random_string.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -25,6 +27,7 @@ class _SignUpState extends State<SignUp> {
   DateTime pickeddate;
   AuthService authService = new AuthService();
   bool _isloading = false;
+  DatabaseService databaseService = new DatabaseService();
 
   signUp() async {
     if (_formKey.currentState.validate()) {
@@ -39,9 +42,21 @@ class _SignUpState extends State<SignUp> {
             _isloading = false;
           });
           HelperFunction.saveUserLoggedInDetails(isloggedin: true);
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => MainScreen()));
         }
+      });
+
+      userId = randomAlphaNumeric(20);
+      Map<String, String> userMap = {
+        "FirstName": fname,
+        "MiddleName": mname,
+        "LastName": lname,
+        "Email": email,
+        "password": password,
+        "Dataofbirth": pickeddate.toString(),
+      };
+      databaseService.addUsersData(userMap, userId).then((value) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => MainScreen()));
       });
     }
   }
@@ -97,7 +112,7 @@ class _SignUpState extends State<SignUp> {
                         hintText: "Middle Name",
                       ),
                       onChanged: (val) {
-                        fname = val;
+                        mname = val;
                       },
                     ),
                     SizedBox(
