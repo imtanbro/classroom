@@ -12,7 +12,17 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
-  String email, password, name;
+  String email,
+      password,
+      fname,
+      mname,
+      lname,
+      userId,
+      div,
+      semister,
+      branch,
+      aboutyou;
+  DateTime pickeddate;
   AuthService authService = new AuthService();
   bool _isloading = false;
 
@@ -37,6 +47,13 @@ class _SignUpState extends State<SignUp> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    pickeddate = DateTime.now();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -58,17 +75,53 @@ class _SignUpState extends State<SignUp> {
                 margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                 child: Column(
                   children: [
-                    Spacer(),
                     TextFormField(
                       validator: (val) {
-                        return val.isEmpty ? "Enter Name" : null;
+                        return val.isEmpty ? "Enter First Name" : null;
                       },
                       decoration: InputDecoration(
-                        hintText: "Name",
+                        hintText: "First Name",
                       ),
                       onChanged: (val) {
-                        name = val;
+                        fname = val;
                       },
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    TextFormField(
+                      validator: (val) {
+                        return val.isEmpty ? "Enter Middle Name" : null;
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Middle Name",
+                      ),
+                      onChanged: (val) {
+                        fname = val;
+                      },
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    TextFormField(
+                      validator: (val) {
+                        return val.isEmpty ? "Enter Last Name" : null;
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Last Name",
+                      ),
+                      onChanged: (val) {
+                        lname = val;
+                      },
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    ListTile(
+                      title: Text(
+                          "Date of Birth : ${pickeddate.day}/${pickeddate.month}/${pickeddate.year}"),
+                      trailing: Icon(Icons.keyboard_arrow_down),
+                      onTap: _pickDate,
                     ),
                     SizedBox(
                       height: size.height * 0.01,
@@ -149,5 +202,20 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
     );
+  }
+
+  _pickDate() async {
+    DateTime date = await showDatePicker(
+        context: context,
+        initialDate: pickeddate,
+        firstDate: DateTime(DateTime.now().year - 50),
+        lastDate: DateTime.now());
+
+    if (date != null) {
+      setState(() {
+        pickeddate = date;
+        print(pickeddate);
+      });
+    }
   }
 }

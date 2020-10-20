@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 AppBar appBar(BuildContext context) {
   return AppBar(
     elevation: 0,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.transparent,
     leading: IconButton(
       icon: Icon(Icons.dashboard, color: kPrimaryColor),
       onPressed: () {},
