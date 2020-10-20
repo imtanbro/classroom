@@ -55,6 +55,7 @@ class _SignUpState extends State<SignUp> {
         "Dataofbirth": pickeddate.toString(),
         "Branch" : branch,
         "Semister" : semister,      
+        "UserID" : userId,
       };
       databaseService.addUsersData(userMap, userId).then((value) {
         Navigator.pushReplacement(
