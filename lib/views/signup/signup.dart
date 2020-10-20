@@ -2,6 +2,7 @@ import 'package:classroom/helper/constant.dart';
 import 'package:classroom/services/auth.dart';
 import 'package:classroom/views/main_screen.dart';
 import 'package:classroom/views/sign_in/signin.dart';
+import 'package:classroom/widgets/appBar.dart';
 import 'package:classroom/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 

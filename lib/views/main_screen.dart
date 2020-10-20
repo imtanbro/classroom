@@ -3,7 +3,7 @@ import 'package:classroom/views/home_page/home.dart';
 import 'package:classroom/views/notifications/notifications.dart';
 import 'package:classroom/views/profile/profilescreen.dart';
 import 'package:classroom/views/study_material/studymaterial.dart';
-import 'package:classroom/widgets/widgets.dart';
+import 'package:classroom/widgets/appBar.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
