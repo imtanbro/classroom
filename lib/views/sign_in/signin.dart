@@ -3,7 +3,7 @@ import 'package:classroom/services/auth.dart';
 import 'package:classroom/views/main_screen.dart';
 import 'package:classroom/views/signup/signup.dart';
 import 'package:classroom/views/teacher_main_screen/teacher_main_screen.dart';
-import 'package:classroom/widgets/widgets.dart';
+import 'package:classroom/widgets/appBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
