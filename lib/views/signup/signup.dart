@@ -59,16 +59,12 @@ class _SignUpState extends State<SignUp> {
         "MiddleName": mname,
         "LastName": lname,
         "Email": email,
+        "RollNo" : rollno,
         "password": password,
         "Dataofbirth": pickeddate.toString(),
-<<<<<<< Updated upstream
         "Branch" : branch,
-        "Semister" : semister,      
-=======
-        "Branch": branch,
-        "Semister": semister,
+        "Semister" : semister,  
         "UserID": userId,
->>>>>>> Stashed changes
       };
       databaseService.addUsersData(userMap, userId).then((value) {
         Navigator.pushReplacement(
@@ -154,11 +150,12 @@ class _SignUpState extends State<SignUp> {
 
                     TextFormField(
                       validator: (val) {
-                        return val ==  ? "Roll No." : null;
+                        return val.length <= 2 ? null : "Roll number should be of 2 digits";
                       },
                       decoration: InputDecoration(
-                        hintText: "Roll No.",
+                        hintText: "Roll Number",
                       ),
+                      keyboardType: TextInputType.number,
                       onChanged: (val) {
                         rollno = val;
                       },
@@ -238,7 +235,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     TextFormField(
                       validator: (val) {
-                        return isEmail(val) ? "Enter valid Email Address" : null;
+                        return isEmail(val) ? null : "Enter valid Email Address";
                       },
                       decoration: InputDecoration(
                         hintText: "Email",
