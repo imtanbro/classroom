@@ -3,7 +3,7 @@ import 'package:classroom/services/auth.dart';
 import 'package:classroom/views/main_screen.dart';
 import 'package:classroom/views/signup/signup.dart';
 import 'package:classroom/views/teacher_main_screen/teacher_main_screen.dart';
-import 'package:classroom/widgets/widgets.dart';
+import 'package:classroom/widgets/appBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -110,16 +110,17 @@ class _SignInState extends State<SignIn> {
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromRGBO(66, 133, 244, 1),
-                                Color.fromRGBO(219, 68, 55, 1),
-                                Color.fromRGBO(244, 180, 0, 1),
-                                Color.fromRGBO(15, 157, 88, 1),
-                              ],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                            ),
+                            color: kPrimaryColor,
+                            // gradient: LinearGradient(
+                            // colors: [
+                            //   Color.fromRGBO(66, 133, 244, 1),
+                            //   Color.fromRGBO(219, 68, 55, 1),
+                            //   Color.fromRGBO(244, 180, 0, 1),
+                            //   Color.fromRGBO(15, 157, 88, 1),
+                            // ],
+                            //       begin: Alignment.centerLeft,
+                            //         end: Alignment.centerRight,
+                            //         ),
                             borderRadius: BorderRadius.circular(30),
                           ),
                           height: size.height * 0.08,
@@ -185,17 +186,18 @@ class _SignInState extends State<SignIn> {
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromRGBO(66, 133, 244, 1),
-                                Color.fromRGBO(219, 68, 55, 1),
-                                Color.fromRGBO(244, 180, 0, 1),
-                                Color.fromRGBO(15, 157, 88, 1),
-                              ],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                            ),
+                            //: LinearGradient(
+                            // colors: [
+                            //      Color.fromRGBO(66, 133, 244, 1),
+                            //     Color.fromRGBO(219, 68, 55, 1),
+                            //    Color.fromRGBO(244, 180, 0, 1),
+                            //   Color.fromRGBO(15, 157, 88, 1),
+                            // ],
+                            //   begin: Alignment.centerLeft,
+                            //     end: Alignment.centerRight,
+                            //),
                             borderRadius: BorderRadius.circular(30),
+                            color: kPrimaryColor,
                           ),
                           height: size.height * 0.08,
                           alignment: Alignment.center,
